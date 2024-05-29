@@ -1,49 +1,74 @@
 <script lang="ts">
 	import '../app.postcss';
+	import { checkToken } from '$lib/helperFunctions';
 	import { AppShell, AppBar, AppRail } from '@skeletonlabs/skeleton';
+	import { goto } from '$app/navigation';
+
+	const initialToken = localStorage.getItem('token') || '';
+
+	$: token = initialToken;
+
+
+	setInterval(() => {
+		const currentToken = token;
+		if (currentToken) {
+			checkToken().then(val=> token = val)
+		}
+		if(!token){
+			goto("/")
+		}
+
+	}, 3000);
+
+
+	
+	
+	// onMount(()=>{
+	// 	console.log( checkToken())
+	// })
+	// $: console.log(checkToken())
+
 </script>
 
-<!-- App Shell -->
+<!-- <Middleware> -->
 <AppShell>
 	<svelte:fragment slot="header">
-		<!-- App Bar -->
 		<AppBar>
+
 			<svelte:fragment slot="lead">
 				<strong class="text-xl uppercase">Skeleton</strong>
 			</svelte:fragment>
+
 			<svelte:fragment slot="trail">
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="https://discord.gg/EXqV7W8MtY"
-					target="_blank"
+					href="/home"
 					rel="noreferrer"
 				>
-					Discord
+					Home
 				</a>
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="https://twitter.com/SkeletonUI"
-					target="_blank"
+					href="/login"
 					rel="noreferrer"
 				>
-					Twitter
+					Login
 				</a>
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="https://github.com/skeletonlabs/skeleton"
-					target="_blank"
+					href="/"
 					rel="noreferrer"
 				>
-					GitHub
+					Register
 				</a>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
+
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail>
-			
-		</AppRail>
+		<AppRail></AppRail>
 	</svelte:fragment>
-	<!-- Page Route Content -->
+
 	<slot />
 </AppShell>
+<!-- </Middleware> -->
