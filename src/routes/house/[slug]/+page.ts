@@ -25,6 +25,6 @@ export const load = (async ({ fetch, params }) => {
 
     return {
         devices: await getDevicesInTheHouse(),
-        roomDevices: await getDevicesInTheRoom()
+        // roomDevices: await getDevicesInTheRoom()
     }
 }) satisfies PageLoad;

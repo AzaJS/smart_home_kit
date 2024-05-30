@@ -5,13 +5,9 @@ import type { PageLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
 	const createHouse = async (obj: ICreateHouse) => {
-		console.log(obj);
 		const res = await fetch(`${API_URL}house/create`, {
 			method: 'POST',
 			body: JSON.stringify(obj),
-			// headers: {
-			// 	"Content-Type": "application/json;charset=utf-8",
-			// }
 			headers: useToken()
 		});
 		console.log(res);

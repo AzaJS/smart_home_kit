@@ -1,3 +1,5 @@
+import type { ModalSettings } from "@skeletonlabs/skeleton";
+
 // place files you want to import through the `$lib` alias in this folder.
 export interface IUserCreate {
     username: string;
@@ -19,4 +21,13 @@ export interface ICreateHouse {
 export interface ICreateRoom {
     name: string;
     house_id: number;
+}
+
+export interface ICreateDevice {
+    name: string;
+    type: string;
+}
+
+export interface IModaleSettings extends ModalSettings {
+    link: string;
 }

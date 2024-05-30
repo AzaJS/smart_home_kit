@@ -3,31 +3,30 @@
 
 	// Stores
 	import { getModalStore } from '@skeletonlabs/skeleton';
-	import type { ICreateHouse } from '$lib';    
-	
-	import { page } from "$app/stores"
+	import type { ICreateHouse } from '$lib';
+
+	import { page } from '$app/stores';
 
 	// Props
 	/** Exposes parent props to this component. */
 	export let parent: SvelteComponent;
 
 	const modalStore = getModalStore();
-	
-    const user_id = JSON.parse(localStorage.getItem('token') || '')?.id 
 
-		
-	const onClick = $page.data.createHouse
+	const user_id = JSON.parse(localStorage.getItem('token') || '')?.id;
+
+	const onClick = $page.data.createHouse;
 
 	// Form Data
 	const formData: ICreateHouse = {
-		name: '',
+		name: ''
 		// user_id: user_id
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
 	function onFormSubmit(): void {
-		console.log(formData)
-		onClick(formData)
+		console.log(formData);
+		onClick(formData);
 		if ($modalStore[0].response) $modalStore[0].response(formData);
 		modalStore.close();
 	}
