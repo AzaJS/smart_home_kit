@@ -1,9 +1,22 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { checkToken } from '$lib/helperFunctions';
-	import { AppShell, AppBar, AppRail } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, AppRail, type ModalComponent } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
+	import ModalHouse from '$lib/Components/Modals/ModalHouse.svelte';
+
+	const modalRegistry: Record<string, ModalComponent> = {
+	// Set a unique modal ID, then pass the component reference
+	modalComponentOne: { ref: ModalHouse },
+	// modalComponentTwo: { ref: ModalComponentTwo },
+	// ...
+};
+
+
+	initializeStores();
+
 
 	const initialToken = localStorage.getItem('token') || '';
 
@@ -19,9 +32,11 @@
 			goto("/login")
 		}
 
-	}, 3000);
+	}, 60000);
 
 </script>
+
+<Modal components={modalRegistry} />
 
 <!-- <Middleware> -->
 <AppShell>
@@ -42,10 +57,10 @@
 				</a>
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="/login"
+					href="/house"
 					rel="noreferrer"
 				>
-					Login
+					Houses
 				</a>
 				<a
 					class="btn btn-sm variant-ghost-surface"

@@ -15,3 +15,8 @@ export interface ICreateHouse {
     name: string;
     user_id: number;
 }
+
+export interface ICreateRoom {
+    name: string;
+    house_id: number;
+}
