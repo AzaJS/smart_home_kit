@@ -29,9 +29,9 @@
 					<h4 class="h4">{house.name}</h4>
 					<p>House</p>
 					<h3>Time created</h3>
-					<pre class="pre">{house.date_added}</pre>
+					<pre class="">{house.date_added}</pre>
 					<h3>Time mod</h3>
-					<pre class="pre">{house.date_modified}</pre>
+					<pre class="">{house.date_modified}</pre>
 				</div>
 			</a>
 		{/each}
