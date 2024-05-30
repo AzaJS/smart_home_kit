@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { PageLoad } from './$types';
+	import type { PageData } from './$types';
 
-	export let data: PageLoad;
+	export let data: PageData;
 
 	let { device } = data;
 

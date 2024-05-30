@@ -1,35 +1,10 @@
 <script lang="ts">
-	// import { AppRail, AppRailAnchor, AppRailTile, type ModalSettings } from '@skeletonlabs/skeleton';
-	import type { SvelteComponent } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	export let parent: SvelteComponent;
+    console.log(data)
 
-	// import { getModalStore } from '@skeletonlabs/skeleton';
-	// import type { ICreateHouse } from '$lib';
-
-	// const modalStore = getModalStore();
-
-	// let currentTile: number = 0;
-
-	// let formData: ICreateHouse;
-
-	// const modal: ModalSettings = {
-	// 	type: 'component',
-	// 	component: 'modalComponentTwo',
-	// 	title: 'Add Room',
-	// 	body: 'Try to add new Room and manage it!'
-	// 	// response: async ( r: ICreateHouse) =>{
-	// 	// 	data.createHouse(r)
-	// 	// }
-	// };
-	// $: console.log(formData);
-
-	// const onClose = () => {
-	// 	data.createHouse(formData)
-	// }
 </script>
 
 <svelte:head>

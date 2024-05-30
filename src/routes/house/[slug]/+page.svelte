@@ -1,15 +1,14 @@
 <script lang="ts">
 
-    import type { PageLoad } from "./$types";
+    import type { PageData } from "./$types";
 
-    export let data: PageLoad;
+    export let data: PageData;
 
     let {devices, name} = data?.devices.data;
-    console.log(devices)
 </script>
 
 <div>
-    <div class="h3 snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10">{name}</div>
+    <div class="h2 snap-x scroll-px-4 snap-mandatory scroll-smooth flex justify-center gap-4 overflow-x-auto px-4 py-10">#{name} House</div>
     {#each devices as device}
     <a href="/rooms/{device.id}">
         <div class="snap-start shrink-0 card py-20 w-40 md:w-80 text-center mx-4">
