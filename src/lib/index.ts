@@ -10,3 +10,8 @@ export interface IUserLogin {
     email: string;
     password: string;
 }
+
+export interface ICreateHouse {
+    name: string;
+    user_id: number;
+}

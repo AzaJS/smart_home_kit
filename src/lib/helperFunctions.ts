@@ -9,3 +9,11 @@ export const checkToken = async () => {
     let result = await res.json();
     return result.success;
 };
+
+export const useToken = ():HeadersInit => {
+    const token = JSON.parse(localStorage.getItem('token') || "");
+
+    return {
+       Authorization: `Bearer ${token?.access_token}`,
+    };
+  };

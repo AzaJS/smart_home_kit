@@ -3,16 +3,9 @@
 	import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 
-	// const initialToken = localStorage.getItem('token') || '';
+	const initialToken = localStorage.getItem('token') || '';
 
-	// const token = writable(initialToken);
+	const token = writable(initialToken);
 
-	// setInterval(async () => {
-	// 	const currentToken = token;
-	// 	if (currentToken) {
-	// 		const isValid = await checkToken();
-	// 		$token = isValid;
-    //         setContext("token", token)
-	// 	}
-	// }, 1000);
+	setContext("token", token)
 </script>

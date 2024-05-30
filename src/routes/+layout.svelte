@@ -3,6 +3,7 @@
 	import { checkToken } from '$lib/helperFunctions';
 	import { AppShell, AppBar, AppRail } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
 	const initialToken = localStorage.getItem('token') || '';
 
@@ -14,19 +15,11 @@
 		if (currentToken) {
 			checkToken().then(val=> token = val)
 		}
-		if(!token){
-			goto("/")
+		if(!token && $page.route.id !== "/login"){
+			goto("/login")
 		}
 
 	}, 3000);
-
-
-	
-	
-	// onMount(()=>{
-	// 	console.log( checkToken())
-	// })
-	// $: console.log(checkToken())
 
 </script>
 
@@ -36,7 +29,7 @@
 		<AppBar>
 
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Skeleton</strong>
+				<strong class="text-xl uppercase">Smart Home</strong>
 			</svelte:fragment>
 
 			<svelte:fragment slot="trail">
@@ -65,9 +58,9 @@
 		</AppBar>
 	</svelte:fragment>
 
-	<svelte:fragment slot="sidebarLeft">
+	<!-- <svelte:fragment slot="sidebarLeft">
 		<AppRail></AppRail>
-	</svelte:fragment>
+	</svelte:fragment> -->
 
 	<slot />
 </AppShell>
