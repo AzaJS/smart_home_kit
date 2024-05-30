@@ -4,27 +4,27 @@ import { useToken } from '$lib/helperFunctions';
 import type { PageLoad } from './$types';
 
 export const load = (async ({ fetch, params }) => {
-	const createHouse = async (obj: ICreateHouse) => {
-		const res = await fetch(`${API_URL}house/create`, {
-			method: 'POST',
-			body: JSON.stringify(obj),
-			headers: useToken()
-		});
-		const result = await res.json();
-        return result;
-	};
 
-	const deleteHouse = async (id: number) => {
-		const res = await fetch(`${API_URL}house/delete/${id}`, {
-			method: 'DELETE',
-			headers: useToken()
-		});
-        const result = res.json();
-        return result;
-	};
+	const getDevicesInTheHouse = async () => {
+		const res = await fetch(`${API_URL}house/withDevices/${params.slug}`, {
+            headers: useToken()
+        })
+        const result = await res.json()
+        // console.log(result)
+        return result
+	}
 
-	return {
-		createHouse,
-        deleteHouse
-	};
+    const getDevicesInTheRoom = async () => {
+        	const res = await fetch(`${API_URL}house/withRooms/${params.slug}`, {
+                headers: useToken()
+            })
+            const result = await res.json()
+            // console.log(result)
+            return result
+    }
+
+    return {
+        devices: await getDevicesInTheHouse(),
+        roomDevices: await getDevicesInTheRoom()
+    }
 }) satisfies PageLoad;

@@ -13,7 +13,7 @@ export interface IUserLogin {
 
 export interface ICreateHouse {
     name: string;
-    user_id: number;
+    // user_id: number;
 }
 
 export interface ICreateRoom {

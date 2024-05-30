@@ -1,91 +1,47 @@
 <script lang="ts">
-	import { AppRail, AppRailAnchor, AppRailTile, type ModalSettings } from "@skeletonlabs/skeleton";
 	import type { SvelteComponent } from 'svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
 	export let parent: SvelteComponent;
 
-	import { getModalStore } from '@skeletonlabs/skeleton';
-
-
-    const modalStore = getModalStore();
-	
-    const formData = {
-		name: '',
-		email: ''
-	};
-
-    let currentTile: number = 0;
-
-
-    const onFormSubmit =() => {
-        console.log(formData)
-    }
 
 
 
-    const modal: ModalSettings = {
-	type: 'component',
-	component: 'modalComponentOne',
-};
-							
-
-// modalStore.trigger(modal);
-
-$: console.log($modalStore)
-
+	$: console.log(data.houses);
 </script>
 
 <svelte:head>
-    <title>Houses</title>
-    <meta name="description" content="All Houses" />
+	<title>Houses</title>
+	<meta name="description" content="All Houses" />
 </svelte:head>
-
-{#if $modalStore[0]}
-	<div class="modal-example-form card p-4 w-modal shadow-xl space-y-4">
-		<header class="text-2xl font-bold">{$modalStore[0].title ?? '(title missing)'}</header>
-		<article>{$modalStore[0].body ?? '(body missing)'}</article>
-		<!-- Enable for debugging: -->
-		<form class="modal-form border border-surface-500 p-4 space-y-4 rounded-container-token">
-			<label class="label">
-				<span>Name</span>
-				<input class="input" type="text" bind:value={formData.name} placeholder="Enter name..." />
-			</label>
-			<!-- <label class="label">
-				<span>Phone Number</span>
-				<input class="input" type="tel" bind:value={formData.tel} placeholder="Enter phone..." />
-			</label> -->
-			<label class="label">
-				<span>Email</span>
-				<input class="input" type="email" bind:value={formData.email} placeholder="Enter email address..." />
-			</label>
-		</form>
-		<!-- prettier-ignore -->
-		<footer class="modal-footer">
-			<button class="btn" on:click={parent.onClose}>close</button>
-			<button class="btn " on:click={onFormSubmit}>Submit Form</button>
-		</footer>
+<div class="flex h-full">
+	<div>
+	
 	</div>
-{/if}
+	<div
+		class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10"
+	>
+		{#each data?.houses?.data as house}
+			<a href="/house/{house.id}">
+				<div class="snap-start shrink-0 card py-20 w-40 md:w-80 text-center">
+					<h4 class="h4">{house.name}</h4>
+					<p>House</p>
+					<h3>Time created</h3>
+					<pre class="pre">{house.date_added}</pre>
+					<h3>Time mod</h3>
+					<pre class="pre">{house.date_modified}</pre>
+				</div>
+			</a>
+		{/each}
+	</div>
+</div>
 
-<AppRail>
-	<svelte:fragment slot="lead">
-		<AppRailAnchor href="/" >(icon)</AppRailAnchor>
-	</svelte:fragment>
-	<!-- --- -->
-<AppRailTile on:click={()=>modalStore.trigger(modal)} bind:group={currentTile} name="tile-1" value={0} title="tile-1">
-		<!-- <svelte:fragment slot="lead">(icon)</svelte:fragment> -->
-		<span>Create House</span>
-	</AppRailTile>
-	<AppRailTile bind:group={currentTile} name="tile-2" value={1} title="tile-2">
-		<svelte:fragment slot="lead">(icon)</svelte:fragment>
-		<span>Tile 2</span>
-	</AppRailTile>
-	<AppRailTile bind:group={currentTile} name="tile-3" value={2} title="tile-3">
-		<svelte:fragment slot="lead">(icon)</svelte:fragment>
-		<span>Tile 3</span>
-	</AppRailTile>
-	<!-- --- -->
-	<svelte:fragment slot="trail">
-		<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
-	</svelte:fragment>
-</AppRail>
-
+<style>
+	/* * {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	} */
+</style>

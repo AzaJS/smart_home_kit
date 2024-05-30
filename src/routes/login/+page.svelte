@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { IUserLogin } from '$lib';
     import type { PageData } from './$types';
     
@@ -16,7 +17,7 @@
            let res = await login(obj)
            console.log(res)
         //    response = res;
-        //    if(res?.success) goto("/login")
+           if(res?.success) goto("/home")
            console.log(res)
         } else {
             alert("NOT FILLED")
