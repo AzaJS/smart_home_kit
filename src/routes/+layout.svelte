@@ -57,16 +57,16 @@
 
 	$: token = initialToken;
 
-	setInterval(() => {
-		const currentToken = token;
-		if (currentToken) {
-			checkToken().then((val) => (token = val));
-		}
-		// console.log(!token)
-		if (!token && $page.route.id !== '/login') {
-			goto('/login');
-		}
-	}, 3000);
+	// setInterval(() => {
+	// 	const currentToken = token;
+	// 	if (currentToken) {
+	// 		checkToken().then((val) => (token = val));
+	// 	}
+	// 	// console.log(!token)
+	// 	if (!token && $page.route.id !== '/login') {
+	// 		goto('/login');
+	// 	}
+	// }, 3000);
 </script>
 
 <Modal components={modalRegistry} />
@@ -83,16 +83,15 @@
 				<a class="btn btn-sm variant-ghost-surface" href="/house" rel="noreferrer"> Houses </a>
 				<a class="btn btn-sm variant-ghost-surface" href="/rooms" rel="noreferrer"> Rooms </a>
 				<a class="btn btn-sm variant-ghost-surface" href="/devices" rel="noreferrer"> Devices </a>
-				<a class="btn btn-sm variant-ghost-surface" href="/home" rel="noreferrer">
+				<a class="btn btn-sm variant-ghost-surface" href="/" rel="noreferrer">
 					{token ? 'log out' : 'login'}
 				</a>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
 
-	<svelte:fragment slot="sidebarLeft">
+	<!-- <svelte:fragment slot="sidebarLeft">
 		<AppRail>
-			<!-- --- -->
 			{#each modalObjs as modal}
 			<a href={modal.link}>
 				<AppRailTile
@@ -102,17 +101,16 @@
 				value={1}
 				title="tile-1"
 				>
-				<!-- <svelte:fragment slot="lead">(icon)</svelte:fragment> -->
 				<span>{modal.title}</span>
 			</AppRailTile>
 		</a>
 			{/each}
-			<!-- --- -->
+		
 			<svelte:fragment slot="trail">
 				<AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
 			</svelte:fragment>
 		</AppRail>
-	</svelte:fragment>
+	</svelte:fragment> -->
 
 	<slot />
 </AppShell>

@@ -1,21 +1,19 @@
 <script lang="ts">
+	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
-	import type { SvelteComponent } from 'svelte';
 
 	export let data: PageData;
 
-	export let parent: SvelteComponent;
+	const { createDevice } = data;
 
-	// const modalStore = getModalStore();
+	const modalStore = getModalStore();
 
-	// let currentTile: number = 0;
-
-	// const modal: ModalSettings = {
-	// 	type: 'component',
-	// 	component: 'modalComponentThree',
-	// 	title: 'Attach Device',
-	// 	body: 'Try to attach new device and manage it!'
-	// };
+	const modal: ModalSettings = {
+		type: 'component',
+		component: 'modalComponentThree',
+		title: 'Attach Device',
+		body: 'Try to attach new device and manage it!'
+	};
 
 	console.log(data);
 </script>
@@ -24,7 +22,17 @@
 	<title>Devices</title>
 	<meta name="description" content="All Devices" />
 </svelte:head>
-<div class="flex h-full">
+
+<div>
+    <div class="flex justify-center my-10">
+		<button
+			on:click={() => modalStore.trigger(modal)}
+			type="button"
+			class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+		>
+			Attach Device
+		</button>
+	</div>
 	<div
 		class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10"
 	>

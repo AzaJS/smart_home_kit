@@ -1,28 +1,37 @@
 <script lang="ts">
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
+	import type { ICreateRoom } from '$lib';
+	import { page } from '$app/stores';
 
 	export let data: PageData;
 
 	const modalStore = getModalStore();
 
-    const modal: ModalSettings = {
-            type: 'component',
-			component: 'modalComponentTwo',
-			title: 'Add Room',
-			body: 'Try to add new Room and manage it!'
-    }
-
+	const modal: ModalSettings = {
+		type: 'component',
+		component: 'modalComponentTwo',
+		title: 'Add Room',
+		body: 'Try to add new Room and manage it!'
+	};
 	let { devices, name } = data?.devices.data;
+	let formData: ICreateRoom = {
+		name: '',
+		house_id: $page.params.slug
+	};
+	$: console.log(formData);
 </script>
 
 <div>
-    <div class="flex justify-center py-10">
-
-        <button on:click={()=> modalStore.trigger(modal)} type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-            Add room
-        </button>
-    </div>
+	<div class="flex justify-center py-10">
+		<button
+			on:click={() => modalStore.trigger(modal)}
+			type="button"
+			class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+		>
+			Add room
+		</button>
+	</div>
 	<div
 		class="h2 snap-x scroll-px-4 snap-mandatory scroll-smooth flex justify-center gap-4 overflow-x-auto px-4 py-10"
 	>

@@ -18,7 +18,8 @@
 
 	// Form Data
 	const formData = {
-		name: ''
+		room_id: "",
+        house_id: ""
 	};
 
     $: console.log($page)
@@ -46,11 +47,11 @@
 		<form class="modal-form {cForm}" action="POST">
                 <label class="label">
                     <span>Name</span>
-                    <input class="input" type="text" bind:value={formData.name} placeholder="Enter name..." />
+                    <input class="input" type="text" bind:value={formData.room_id} placeholder="Enter name..." />
                 </label>
                 <label class="label">
                     <span>House Id</span>
-				<!-- <input class="input" type="email" bind:value={formData.email} placeholder="Enter email address..." /> -->
+				<input class="input" type="email" bind:value={formData.house_id} placeholder="Enter email address..." />
 			</label>
 		</form>
 		<footer class="modal-footer {parent.regionFooter}">

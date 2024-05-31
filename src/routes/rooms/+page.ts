@@ -34,7 +34,7 @@ export const load = (async ({fetch}) => {
 	};
 
     return {
-        createRoom,
+        // createRoom,
         deleteRoom,
         rooms: await getAllRooms()
     };

@@ -1,13 +1,17 @@
 <script lang="ts">
-	import type { SvelteComponent } from 'svelte';
 	import type { PageData } from './$types';
+	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
 
-	export let parent: SvelteComponent;
+	const modalStore = getModalStore();
 
-
-
+	const modal: ModalSettings = {
+		type: 'component',
+		component: 'modalComponentOne',
+		title: 'Add House',
+		body: 'Try to add new House and manage it!'
+	};
 
 	$: console.log(data.houses);
 </script>
@@ -16,9 +20,15 @@
 	<title>Houses</title>
 	<meta name="description" content="All Houses" />
 </svelte:head>
-<div class="flex h-full">
-	<div>
-	
+<div>
+	<div class="flex justify-center my-10">
+		<button
+			on:click={() => modalStore.trigger(modal)}
+			type="button"
+			class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+		>
+			Add house
+		</button>
 	</div>
 	<div
 		class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10"

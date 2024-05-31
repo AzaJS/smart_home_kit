@@ -17,6 +17,8 @@
 
 	const onClick = $page.data.createHouse;
 
+	$: console.log($page)
+
 	// Form Data
 	const formData: ICreateHouse = {
 		name: ''

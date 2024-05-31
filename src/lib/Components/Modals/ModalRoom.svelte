@@ -5,6 +5,7 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 
 	import { page } from '$app/stores';
+	import type { ICreateRoom } from '$lib';
 
 	// Props
 	/** Exposes parent props to this component. */
@@ -18,9 +19,9 @@
     $: console.log($page, parent)
 
 	// Form Data
-	const formData = {
-		name: ''
-		// user_id: user_id
+    const formData: ICreateRoom = {
+		name: '',
+		house_id: $page.params.slug
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
